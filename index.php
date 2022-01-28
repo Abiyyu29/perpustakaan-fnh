@@ -21,24 +21,36 @@
                     if (isset($_POST['login'])) {
                         $username = $_POST["username"];
                         $password = $_POST["password"];
-                        $queryCheck = mysqli_query($konek,"SELECT * FROM petugas WHERE username = '$username' AND password = '$password'");
+                      
+                        $queryCheck = mysqli_query($konek,"SELECT * FROM petugas WHERE username = '$username'");
                         $check = mysqli_num_rows($queryCheck);
                         echo $check;
 
                         if ($check === 1) {
-                            session_start();
-                            $_SESSION['jabatan'] = "petugas";
-                            ?>
-                            <script>
-                                alert('Anda Berhasil Login');
-                                window.location.href='dashboard.php';
-                            </script>
-                            <?php                    
+                            foreach ($queryCheck as $row){
+                                $nama               = $row['nama'];
+                                $jabatan            = $row['jabatan'];
+                                $password_enkript   = $row['password'];
+                            }
+
+                            if (password_verify($password, $password_enkript)) {
+                                session_start();
+                                $_SESSION['status']     = "login";
+                                $_SESSION['nama']       = $nama;
+                                $_SESSION['jabatan']    = $jabatan;
+                                ?>
+                                <script>
+                                    alert('Anda Berhasil Login');
+                                    window.location.href='dashboard.php';
+                                </script>
+                                <?php    
+                            }
+                                         
                         }else{
                             ?>
                             <script>
-                            alert('Anda Gagal Login');
-                            window.location.href='index.php';
+                                alert('Anda Gagal Login');
+                                window.location.href='index.php';
                             </script>
                             <?php
                         }
@@ -47,7 +59,7 @@
                     <div class="container">
                         <div>
                         <center>
-                        <h1>SI Perpustakaan TB</h1>
+                        <h1>Perpustakaan TB</h1><br>
                         </center>
                         <form action="" method="POST">
                             <div class="form-group">

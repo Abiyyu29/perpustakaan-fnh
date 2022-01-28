@@ -73,7 +73,7 @@
                 ?>
                 <script>
                    alert('Anda Berhasil Login !!!!')
-                   window.location.href='http://localhost/daffa/dashboard.php';
+                   window.location.href='http://localhost/perpustakaan/dashboard.php';
                 </script>
                 <?php
            }else{

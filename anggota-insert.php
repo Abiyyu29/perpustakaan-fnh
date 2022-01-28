@@ -1,26 +1,25 @@
 <?php
 //Proses insert data
 if (isset($_POST['save'])) {
-$nis            = $_POST['nis'];
-$nama           = $_POST['nama'];
-$jk             = $_POST['jk'];
-$tpt_lahir      = $_POST['tpt_lahir'];
-$tgl_lahir      = $_POST['tgl_lahir'];
-$id_kelas       = $_POST['id_kelas'];
-$id_jurusan     = $_POST['id_jurusan'];
-$tlp            = $_POST['tlp'];
-$alamat         = $_POST['alamat'];
-
+$nis        = $_POST['nis'];
+$nama       = $_POST['nama'];
+$jk         = $_POST['jk'];
+$tpt_lahir  = $_POST['tpt_lahir'];
+$tgl_lahir  = $_POST['tgl_lahir'];
+$kelas      = $_POST['kelas'];
+$jurusan    = $_POST['jurusan'];
+$tlp        = $_POST['tlp'];
+$alamat     = $_POST['alamat'];
 $query_insert = mysqli_query($konek,"INSERT INTO anggota 
-VALUES('','$nis','$nama','$jk','$tpt_lahir','$tgl_lahir','$id_kelas','$id_jurusan','$tlp','$alamat')");
+VALUES('','$nis','$nama','$jk','$tpt_lahir','$tgl_lahir','$kelas','$jurusan','$tlp','$alamat')");
     if($query_insert)
     {
         ?>
-            <div class="alert alert-success">
-                Data Berhasil Disimpan
-            </div>
-        <?php
-        header('refresh:3; URL=http://localhost/daffa/dashboard.php?page=anggota');
+        <script>
+            alert('Data Berhasil Ditambah')
+            window.location.href='dashboard.php?page=anggota';
+        </script>
+        <?php;
     }
     else
     {

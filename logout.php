@@ -1,8 +1,6 @@
-<?php 
- 
-session_start();
+<?php
 session_destroy();
- 
-header("Location: index.php");
-alert('Anda Berhasil Logout !');
 ?>
+<script>
+window.location.href='index.php';
+</script>
